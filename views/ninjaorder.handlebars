@@ -1,0 +1,29 @@
+<div class="container mt-5"style="height:800px">
+   <h5 style="text-align:center">Your Orders</h5><br>
+    <div class="card-deck">
+    {{#each data}}
+    <div class="card">
+    <div class="card-body">
+        <p><b>Client Name:{{this.Clientname}}</b></p>
+        <p><b>Addresseee Name:{{this.addresseename}}</b></p>
+        <p>Order item:{{this.orderitem}}</p>
+        <p>Orderid:{{this._id}}</p>
+        <p>Phone no:{{this.mobilenumber}}</p>
+        <p>Pickup Address:{{this.pickupaddress}}</p>
+        <p>Delivery Address:{{this.deliveryaddress}}</p>
+        <form action="/ninjadashboard/statusupdate/{{this._id}}" method="Post">
+        <p><select name="status"  class="form-control">
+        <option value="" disabled="" selected="">status</option>
+         <option value="ontransit">waiting</option>
+         <option value="ontransit">On transit</option>
+        <option value="delivered">Delivered</option>
+      
+        </select></p>
+        <button class="btn btn-info" type="submit">Update</button>
+         <a class="btn btn-info" href="/ninjadashboard">Back</a>
+        </form>
+    </div>
+    </div>
+    {{/each}}
+  </div>  
+</div>

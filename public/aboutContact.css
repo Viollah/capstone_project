@@ -1,0 +1,75 @@
+* {
+  box-sizing: border-box;
+}
+li a,
+.navbar a {
+  color: #3c1a69;
+  font-size: 30px;
+}
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,167,181, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+@media only screen and (min-width: 990px) {
+  .navitem {
+    margin-left: 320px !important ;
+  }
+  .dropdown-item {
+    font-size: 20px !important;
+  }
+  #neil {
+    background-image: url("logo/del1.jpg");
+    background-size: cover;
+    background-position: 100% 20%;
+    height: 400px;
+  }
+
+  #neil > h1 {
+    position: relative;
+    top: 280px;
+    left: 40px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  #neil > h1 {
+    display: none;
+  }
+}
+@media only screen and (min-width: 650px) {
+  #neil > h1 {
+    position: relative;
+    top: 220px;
+    left: 40px;
+  }
+  .navitem {
+    margin-left: 280px !important ;
+  }
+}
+
+#history {
+  background-color: #3c1a69;
+  text-align: center;
+  padding: 20px;
+}
+
+footer p {
+  color: #3c1a69;
+}
+#address li {
+  color: #3c1a69;
+}
+.map-responsive {
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
+}
+.map-responsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+a:hover {
+  color: black;
+}

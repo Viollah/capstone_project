@@ -1,0 +1,54 @@
+* {
+  box-sizing: border-box;
+}
+li a,
+.navbar a {
+  color: #3c1a69;
+  font-size: 30px;
+}
+@media only screen and (max-width: 600px) {
+  .btn {
+    margin-left: 20px;
+  }
+}
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0,167,181, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+.navitem {
+  margin-left: 320px !important ;
+}
+.dropdown-item {
+  font-size: 20px !important;
+}
+#neil {
+  background-image: url("https://www.lalamove.com/hubfs/Lalamove%20India%20images/Main%20page_india_new.svg");
+  background-size: cover;
+  background-position: 100% 20%;
+  height: 400px;
+}
+#neil > h1 {
+  position: relative;
+  top: 280px;
+  left: 40px;
+}
+#history {
+  background-color: #3c1a69;
+  text-align: center;
+  padding: 20px;
+}
+footer {
+  margin-top: 100px;
+}
+footer p {
+  color: #3c1a69;
+}
+#address li {
+  color: #3c1a69;
+}
+#createaccount {
+  background-color: #3c1a69;
+  text-align: center;
+  padding: 10px;
+  text-shadow: white;
+  right: 100px;
+}
