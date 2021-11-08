@@ -51,6 +51,10 @@ app.get("/contact", function(req, res) {
   res.sendFile(__dirname + "/public/login.html");
 }); */
 
-app.listen(3050, function() {
-  console.log("port is running!!!");
+// app.listen(3050, function() {
+//   console.log("port is running!!!");
+// });
+const PORT = process.env.PORT || 3013;
+app.listen(PORT,function(){
+  console.log("Aapp started on port ${PORT}")
 });
