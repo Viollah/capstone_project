@@ -14,26 +14,26 @@ var app = express();
 app.engine("handlebars", exphbs({ defaultLayout: "main", extname: ".handlebars" }));
 app.set("view engine", "handlebars");
 
-var db;
-var mongoclient = require("mongodb").MongoClient;
-mongoclient.connect(
-  "mongodb://localhost:27017",
-  { useNewUrlParser: true },
-  function(err, client) {
-    if (err) throw err;
-    db = client.db("parcelninja");
-  } 
-);
-// mongoose.connect('mongodb://localhost:27017/parcelninja')
-// .then(()=>console.log('connect to MongoDB...'))
-// .catch(err => console.error('it could not connect to mongoDB...'));
+// var db;
+// var mongoclient = require("mongodb").MongoClient;
+// mongoclient.connect(
+//   "mongodb://localhost:27017",
+//   { useNewUrlParser: true },
+//   function(err, client) {
+//     if (err) throw err;
+//     db = client.db("parcelninja");
+//   } 
+// );
+mongoose.connect('mongodb://localhost:27017/parcelninja')
+.then(()=>console.log('connect to MongoDB...'))
+.catch(err => console.error('it could not connect to mongoDB...'));
 
-// var MongoClient = require('mongodb').MongoClient,Server =require('mongodb').Server;
-// var mongoClient = new MongoClient(new Server('localhost',27017));
-// mongoClient.open(function(err,mongoClient){
-//   var db1 = mongoClient.db("parcelninja");
-//   mongoClient.close();
-// });
+var MongoClient = require('mongodb').MongoClient,Server =require('mongodb').Server;
+var mongoClient = new MongoClient(new Server('localhost',27017));
+mongoClient.open(function(err,mongoClient){
+  var db1 = mongoClient.db("parcelninja");
+  mongoClient.close();
+});
 
 app.use(
   session({
