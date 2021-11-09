@@ -7,7 +7,7 @@ var track = require("./routes/track");
 var clientdashboard = require("./routes/clientdashboard");
 var ninjadashboard = require("./routes/ninjadashboard");
 var messages = require("./routes/messages.js");
-const { MongoDBNamespace } = require("mongodb");
+const { MongoDBNamespace, MongoClient } = require("mongodb");
 
 var app = express();
 
@@ -27,6 +27,13 @@ app.set("view engine", "handlebars");
 mongoose.connect('mongodb://localhost:27017/parcelninja')
 .then(()=>console.log('connect to MongoDB...'))
 .catch(err => console.error('it could not connect to mongoDB...'));
+
+var MongoClient = require('mongodb').MongoClient,Server =require('mongodb').Server;
+var mongoClient = new MongoClient(new Server('localhost',27017));
+mongoClient.open(function(err,mongoClient){
+  var db1 = mongoClient.db("parcelninja");
+  mongoClient.close();
+});
 
 app.use(
   session({
