@@ -7,22 +7,27 @@ var track = require("./routes/track");
 var clientdashboard = require("./routes/clientdashboard");
 var ninjadashboard = require("./routes/ninjadashboard");
 var messages = require("./routes/messages.js");
+const { MongoDBNamespace } = require("mongodb");
 
 var app = express();
 
 app.engine("handlebars", exphbs({ defaultLayout: "main", extname: ".handlebars" }));
 app.set("view engine", "handlebars");
 
-var db;
-var mongoclient = require("mongodb").MongoClient;
-mongoclient.connect(
-  "mongodb://localhost:27017",
-  { useNewUrlParser: true },
-  function(err, client) {
-    if (err) throw err;
-    db = client.db("parcelninja");
-  } 
-);
+// var db;
+// var mongoclient = require("mongodb").MongoClient;
+// mongoclient.connect(
+//   "mongodb://localhost:27017",
+//   { useNewUrlParser: true },
+//   function(err, client) {
+//     if (err) throw err;
+//     db = client.db("parcelninja");
+//   } 
+// );
+mongoose.connect('mongodb:localhost/parcelninja')
+.then(()=>console.log('connect to MongoDB...'))
+.catch(err => console.error('it could not connect to mongoDB...'));
+
 app.use(
   session({
     secret: "Express session secret"
