@@ -24,7 +24,7 @@ app.set("view engine", "handlebars");
 //     db = client.db("parcelninja");
 //   } 
 // );
-mongoose.connect('mongodb:localhost/parcelninja')
+mongoose.connect('mongodb://localhost:27017/parcelninja')
 .then(()=>console.log('connect to MongoDB...'))
 .catch(err => console.error('it could not connect to mongoDB...'));
 
