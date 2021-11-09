@@ -56,5 +56,5 @@ app.get("/contact", function(req, res) {
 // });
 const PORT = process.env.PORT || 3013;
 app.listen(PORT,function(){
-  console.log("App started on port ${PORT}")
+  console.log(`App started on port ${PORT}`)
 });
