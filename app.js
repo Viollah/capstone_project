@@ -36,6 +36,11 @@ app.set("view engine", "handlebars");
 //   mongoClient.close();
 // });
 
+open({
+  filename: "./sqlite.db",
+  driver: sqlite3.Database,
+}).then(async function (db){
+
 app.use(
   session({
     secret: "Express session secret"
@@ -59,6 +64,8 @@ app.get("/about", function(req, res) {
 });
 app.get("/contact", function(req, res) {
   res.sendFile(__dirname + "/public/contact.html");
+});
+
 });
 /* app.get("/admin", function(req, res) {
   res.sendFile(__dirname + "/public/login.html");
