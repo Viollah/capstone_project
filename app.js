@@ -57,6 +57,9 @@ open({
   app.get("/about", function(req, res) {
     res.sendFile(__dirname + "/public/about.html");
   });
+  app.get("/catagories", function(req, res) {
+    res.sendFile(__dirname + "/public/catagories.html");
+  });
   app.get("/contact", function(req, res) {
     res.sendFile(__dirname + "/public/contact.html");
   });
