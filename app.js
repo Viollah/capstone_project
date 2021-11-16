@@ -1,8 +1,8 @@
 var express = require("express");
 var exphbs = require("express-handlebars");
 var session = require("express-session");
-const bcrypt = require('bcrypt');
-var ssn;
+// const bcrypt = require('bcrypt');
+// var ssn;
 
 
 const sqlite3 = require('sqlite3');
@@ -105,10 +105,6 @@ app.post("/signup",async function(req, res){
     res.render('contact');
   });
 
-  app.get("/categories", function(req, res){
-    res.render('categories');
-  });
-
   app.get("./", function(req, res){
     res.render('order');
   });
@@ -124,6 +120,10 @@ app.post("/signup",async function(req, res){
 
   app.post("/ninjadashboard/statusupdate/",async function(req, res){
     res.redirect('ninjaorder');
+  });
+
+  app.post("/clientdashboard/parceldetails",async function(req,res){
+    res.render('');
   });
 
   app.get("/clientdashboard/logout", function(req, res){
