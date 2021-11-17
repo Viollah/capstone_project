@@ -1,0 +1,4 @@
+-- INSERT INTO user (id, firstname, lastname, email, password) VALUES (1, 'James', 'Nkomo', 'james@gmail.com', 'james123');
+-- INSERT INTO user (id, firstname, lastname, email, password) VALUES (2, 'Thabo', 'Masimula', 'thabo@gmail.com', 'thabo123');
+-- INSERT INTO user (id, firstname, lastname, email, password) VALUES (3, 'Jason', 'Hope', 'jason@gmail.com', 'jason123');
+-- INSERT INTO user (id, firstname, lastname, email, password) VALUES (4, 'Axola', 'Khumalo', 'axola@gmail.com', 'axolas123');

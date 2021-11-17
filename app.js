@@ -20,113 +20,117 @@ app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true,
 
 app.use(urlencoded({ extended: false }))
 // parse application/
-app.use(json()); 
+app.use(json());
 
 open({
   filename: './parceldelivery.db',
   driver: sqlite3.Database
-}).then(async function (db){
-// run migrations
+}).then(async function (db) {
+  // run migrations
   await db.migrate();
   // only setup the routes once the database connection has been established
 
 
 
 
-  app.get("/", function(req, res){
+  app.get("/", async function (req, res) {
+    console.log("home runnig...");
+    let allUsers = await db.all('select * from user');
+    console.log(allUsers);
     res.render('home');
   });
 
-  app.get("/login/customer", function(req, res){
+  app.get("/login/customer", function (req, res) {
     res.render('login-customer');
   });
 
- 
 
-  app.post("/login/authcustomer",async function(req, res){
+
+  app.post("/login/authcustomer", async function (req, res) {
     let email = req.body.email;
     let password = req.body.password;
-    let user =  await db.all("select * from user where email = ? and password = ?",email,password);
+    let user = await db.all("select * from user where email = ? and password = ?", email, password);
+    console.log(user);
     res.redirect('clientdashboard');
   });
 
-  app.get("/login/clientdashboard", function(req, res){
+  app.get("/login/clientdashboard", function (req, res) {
     res.render('clientdashboard');
   });
 
-  app.get("/login/ninja", function(req, res){
+  app.get("/login/ninja", function (req, res) {
     res.render('login-ninja');
   });
 
-  app.post("/login/auth",async function(req, res){
+  app.post("/login/auth", async function (req, res) {
     let email = req.body.email;
     let password = req.body.password;
-    let user =  await db.all("select * from user where email = ? and password = ?",email,password);
+    let user = await db.all("select * from user where email = ? and password = ?", email, password);
     res.redirect('ninjadashboard');
   });
 
-  app.get("/login/ninjadashboard", function(req, res){
+  app.get("/login/ninjadashboard", function (req, res) {
     res.render('ninjadashboard');
   });
 
 
-  app.get("/signup", function(req, res){
+  app.get("/signup", function (req, res) {
     res.render('signup');
   });
 
- 
 
-app.post("/signup",async function(req, res){
+
+  app.post("/signup", async function (req, res) {
 
     console.log(req.session.firstName, req.session.lastName, req.session.email, req.session.password);
-    let insertData = ('INSERT INTO USER (firstName,lastName,email,password)  VALUES (?,?,?,?)');
+    let insertData = ('INSERT INTO user (firstName, lastName, email, password)  VALUES (?, ?, ?, ?)');
     await db.run(insertData, req.session.firstName, req.session.lastName, req.session.email, req.session.password);
-    
+
     res.redirect('/login/customer');
   });
-  app.get("/signup/signupninja", function(req, res){
+  app.get("/signup/signupninja", function (req, res) {
     res.render('signupninja');
   });
 
-  app.post("/signup/ninja",async function(req, res){
+  app.post("/signup/ninja", async function (req, res) {
 
     console.log(req.session.firstName, req.session.lastName, req.session.email, req.session.password);
     let insertData = ('INSERT INTO USER (firstName,lastName,email,password)  VALUES (?,?,?,?)');
     await db.run(insertData, req.session.firstName, req.session.lastName, req.session.email, req.session.password);
-    
+
     res.redirect('/login/ninja');
   });
 
-  app.get("/about", function(req, res){
+  app.get("/about", function (req, res) {
     res.render('about');
   });
 
-  app.get("/contact", function(req, res){
+  app.get("/contact", function (req, res) {
     res.render('contact');
   });
 
-  app.get("./", function(req, res){
+  app.get("./", function (req, res) {
     res.render('order');
   });
 
-  app.get("/ninjadashboard/orders", function(req, res){
+  app.get("/ninjadashboard/orders", function (req, res) {
     res.render('ninjaorder');
   });
 
-  app.get("/ninjadashboard/", function(req, res){
+  app.get("/ninjadashboard/", function (req, res) {
     res.render('ninjadashboard');
   });
-  
 
-  app.post("/ninjadashboard/statusupdate/",async function(req, res){
+
+  app.post("/ninjadashboard/statusupdate/", async function (req, res) {
     res.redirect('ninjaorder');
   });
 
-  app.post("/clientdashboard/parceldetails",async function(req,res){
+  app.post("/clientdashboard/parceldetails", async function (req, res) {
     res.render('');
   });
 
-  app.get("/clientdashboard/logout", function(req, res){
+  app.get("/clientdashboard/logout", function (req, res) {
     res.render('login-customer');
   });
 
@@ -134,6 +138,6 @@ app.post("/signup",async function(req, res){
 
 
 const PORT = process.env.PORT || 3013;
-app.listen(PORT,function(){
+app.listen(PORT, function () {
   console.log(`App started on port ${PORT}`)
 });
