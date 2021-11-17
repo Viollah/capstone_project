@@ -1,0 +1,4 @@
+INSERT INTO drivers (id, firstname, lastname, phonenumber, empid, status, duty, locality, city) VALUES (1, 'James', 'Nkomo', '0790527423', 'james123', 'Available','On Duty', 'Chiawelo', 'Johannesburg');
+INSERT INTO drivers (id, firstname, lastname, phonenumber, empid, status, duty, locality, city) VALUES (2, 'Thomas', 'Nkuna', '0763342216', 'Thomas96', 'Available','On Duty', 'Tembisa', 'Johannesburg');
+INSERT INTO drivers (id, firstname, lastname, phonenumber, empid, status, duty, locality, city) VALUES (3, 'Viollah', 'Mudau', '0781192425', 'Viollah88', 'Available','On Duty', 'Diepkloof', 'Johannesburg');
+INSERT INTO drivers (id, firstname, lastname, phonenumber, empid, status, duty, locality, city) VALUES (4, 'Felicia', 'Mtshweni', '0844175627', 'fel97', 'Available','On Duty', 'Doornfontein', 'Johannesburg');

@@ -54,8 +54,11 @@ open({
     res.redirect('clientdashboard');
   });
 
-  app.get("/login/clientdashboard", function (req, res) {
-    res.render('clientdashboard');
+  app.get("/login/clientdashboard",async function (req, res) {
+    let drivers = await db.all("select * from drivers");
+    res.render('clientdashboard', {
+      data: drivers
+    });
   });
 
   app.get("/login/ninja", function (req, res) {
@@ -113,6 +116,15 @@ open({
     res.render('order');
   });
 
+ app.post("/clientdashboard/form", async function (req, res) {
+    res.redirect('form');
+    
+  });
+
+  app.get("/clientdashboard/form", function (req, res) {
+    res.render('form');
+  });
+
   app.get("/ninjadashboard/orders", function (req, res) {
     res.render('ninjaorder');
   });
@@ -127,11 +139,19 @@ open({
   });
 
   app.post("/clientdashboard/parceldetails", async function (req, res) {
-    res.render('');
+    res.render('order');
+  });
+
+   app.get("/clientdashboard/", function (req, res) {
+    res.redirect('/login/clientdashboard');
   });
 
   app.get("/clientdashboard/logout", function (req, res) {
     res.render('login-customer');
+  });
+
+   app.get("/ninjadashboard/logout", function (req, res) {
+    res.render('login-ninja');
   });
 
 });

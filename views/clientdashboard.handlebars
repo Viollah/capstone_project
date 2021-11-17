@@ -23,7 +23,7 @@
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
                     aria-labelledby="v-pills-home-tab">
-                    <h1 class="text-center" style="color:#004f59">Our Customer(s)</h1>
+                    <h1 class="text-center" style="color:#004f59">Our Delivery Guy(s)</h1>
                     <div class="row">
                         <div class="column">
                             <div class="card-deck" style="padding:10px">
@@ -31,22 +31,22 @@
                                 <div class="card">
                                     <img src={{this.photo}} class="card-img-top" alt="ninja">
                                     <div class="card-body">
-                                        <p id="ninjaid " style="color:#c3cfd1">Name:{{this.first_name}}</p>
+                                        <p id="ninjaid " style="color:#c3cfd1">Name:{{this.firstname}}</p>
                                         <p style="color:#c3cfd1">Phone no:{{this.phonenumber}}</p>
-                                        <p style="color:#c3cfd1">EmpId:{{this._id}}</p>
-                                        <p style="color:#c3cfd1">Status:{{this.Availability}}</p>
+                                        <p style="color:#c3cfd1">EmpId:{{this.empid}}</p>
+                                        <p style="color:#c3cfd1">Status:{{this.Status}}</p>
                                         <p style="color:#c3cfd1">Duty:{{this.duty}}</p>
                                         <p style="color:#c3cfd1">Locality:{{this.locality}}</p>
                                         <p style="color:#c3cfd1">City:{{this.city}}</p>
 
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn bg-info" style="color: white"
-                                            data-toggle="modal" data-target="#{{this.first_name}}">
+                                            data-toggle="modal" data-target="#{{this.firstname}}">
                                             Book
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id={{this.first_name}} tabindex=" -1" role="dialog"
+                                        <div class="modal fade" id={{this.firstname}} tabindex=" -1" role="dialog"
                                             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
@@ -101,7 +101,7 @@
                                 <img src={{pic}} alt="Ninja Picture" height="150px">
 
                                 <span id="name"
-                                    style="font-size: 20px; color:#c3cfd1; text-align:center">{{fname}}</span>
+                                    style="font-size: 20px; color:#c3cfd1; text-align:center">{{firstname}}</span>
                             </span>
                         </div><br>
                         <div class="container w-50 mb-5">
@@ -145,7 +145,7 @@
                             <div class="container">
                                 <span>
                                     <span id="ninja _name" style="font-size: 20px; color:#c3cfd1; text-align:center">
-                                        <strong>Welcome {{fname}} {{lname}} </strong> </span>
+                                        <strong>Welcome {{firstname}} {{lastname}} </strong> </span>
                                 </span>
                             </div><br>
 
