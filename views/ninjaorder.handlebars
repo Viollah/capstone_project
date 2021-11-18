@@ -4,14 +4,14 @@
     {{#each data}}
     <div class="card">
     <div class="card-body">
-        <p><b>Client Name:{{this.Clientname}}</b></p>
-        <p><b>Addresseee Name:{{this.addresseename}}</b></p>
-        <p>Order item:{{this.orderitem}}</p>
-        <p>Orderid:{{this._id}}</p>
+        <p><b>Client Name:{{this.sendername}}</b></p>
+        <p><b>Addresseee Name:{{this.recipientname}}</b></p>
+        <p>Order item:{{this.item}}</p>
+        <p>Orderid:{{this.order_id}}</p>
         <p>Phone no:{{this.mobilenumber}}</p>
-        <p>Pickup Address:{{this.pickupaddress}}</p>
-        <p>Delivery Address:{{this.deliveryaddress}}</p>
-        <form action="/ninjadashboard/statusupdate/{{this._id}}" method="Post">
+        <p>Pickup Address:{{this.pick_up_address}}</p>
+        <p>Delivery Address:{{this.drop_off_address}}</p>
+        <form action="/ninjadashboard/statusupdate/{{this.order_id}}" method="Post">
         <p><select name="status"  class="form-control">
         <option value="" disabled="" selected="">status</option>
          <option value="ontransit">waiting</option>

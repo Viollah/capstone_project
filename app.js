@@ -30,9 +30,6 @@ open({
   await db.migrate();
   // only setup the routes once the database connection has been established
 
-
-
-
   app.get("/", async function (req, res) {
     console.log("home runnig...");
     let allUsers = await db.all('select * from user');
@@ -126,8 +123,11 @@ open({
     res.render('form');
   });
 
-  app.get("/ninjadashboard/orders", function (req, res) {
-    res.render('ninjaorder');
+  app.get("/ninjadashboard/orders",async function (req, res) {
+    let package_details = await db.all("select * from package_details");
+    res.render('ninjaorder', {
+      data: package_details
+    });
   });
 
   // app.get("/ninjadashboard/", function (req, res) {
