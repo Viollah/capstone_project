@@ -22,7 +22,7 @@
                             <img src={{this.photo}}
                                 alt="Ninja Picture" height="150px">
 
-                            <span id="ninja _name" style="font-size: 20px; color:#c3cfd1"><strong style="color: white;">Welcome {{this.first_name}} {{this.last_name}} </strong></span>
+                            <span id="ninja _name" style="font-size: 20px; color:#c3cfd1"><strong style="color: white;">Welcome {{this.firstname}} {{this.lastname}} </strong></span>
                         </span>
                     </div><br>
                     <div class="container" >
@@ -35,11 +35,11 @@
                                         <div id="personal_details">
                                             <div>
                                                 <label for="name" class="font-weight-bold"style="color:#004f59">Name:</label>
-                                                <input type="text" id="name" class="form-control" value={{this.first_name}}></input>
+                                                <input type="text" id="name" class="form-control" value={{this.firstname}}></input>
                                             </div>
                                             <div>
                                                 <label for="id" class="font-weight-bold"style=" color:#004f59">Emp Id:</label>
-                                                <input type="text" id="id" class="form-control" value={{this._id}}></input>
+                                                <input type="text" id="id" class="form-control" value={{this.empid}}></input>
                                             </div>
                                             <div>
                                                 <label for="locality" class="font-weight-bold"style=" color:#004f59">Locality:</label>
@@ -64,7 +64,7 @@
                                     <h5 class="card-header"style="font-size: 20px; color:#004f59">Availability Status</h5>
                                     <div class="card-body">
 
-                                        <p id="availability" style="font-size: 20px; color:#c3cfd1">{{this.Availability}}</p>
+                                        <p id="availability" style="font-size: 20px; color:#c3cfd1">{{this.status}}</p>
 
                                     </div>
                                 </div>

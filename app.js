@@ -72,15 +72,16 @@ open({
     res.redirect('ninjadashboard');
   });
 
-  app.get("/login/ninjadashboard", function (req, res) {
-    res.render('ninjadashboard');
+  app.get("/login/ninjadashboard",async function (req, res) {
+  let drivers = await db.all("select * from drivers");
+    res.render('ninjadashboard', {
+      data: drivers
+    });
   });
-
 
   app.get("/signup", function (req, res) {
     res.render('signup');
   });
-
 
 
   app.post("/signup", async function (req, res) {
@@ -129,13 +130,13 @@ open({
     res.render('ninjaorder');
   });
 
-  app.get("/ninjadashboard/", function (req, res) {
-    res.render('ninjadashboard');
-  });
+  // app.get("/ninjadashboard/", function (req, res) {
+  //   res.render('/login/ninjadashboard');
+  // });
 
 
-  app.post("/ninjadashboard/statusupdate/", async function (req, res) {
-    res.redirect('ninjaorder');
+  app.post("/ninjadashboard/update/", async function (req, res) {
+    res.redirect('/login/ninjadashboard');
   });
 
   app.post("/clientdashboard/parceldetails", async function (req, res) {
