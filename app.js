@@ -198,6 +198,9 @@ open({
 
 
 });
+app.get("/chatbot", function(req, res) {
+  res.sendFile(__dirname + "/public/chatbot.html");
+});
 
 
 

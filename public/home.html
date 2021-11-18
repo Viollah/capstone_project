@@ -13,6 +13,109 @@
     />
   </head>
   <body>
+     <!-- Chatbot -->
+  <link rel="stylesheet" href="dist/jquery.convform.css">
+  <script type="text/javascript" src="public/jquery-1.12.3.min.js"></script>
+  <script type="text/javascript" src="dist/jquery.convform.js"></script>
+  <script type="text/javascript" src="public/custom.js"></script>
+
+</head>
+
+<body>
+
+  <!-- Chatbot -->
+  <div class="chat_icon">
+    <!-- <i class="fa fa-comments" aria-hidden="true"></i> -->
+    <img src="img/icon.jpg" alt="chat">
+</div>
+  <div class="chat_box">
+    <div id="chat" class="conv-form-wrapper">
+    <form action="" method="GET" class="hidden">
+      <select
+        data-conv-question="Hello! I'm a chatbot . Can I show you some features? (this question comes from a select)"
+        name="first-question">
+        <option value="yes">Yes</option>
+        <option value="sure">Sure!</option>
+      </select>
+      <input type="text" name="name"
+        data-conv-question="Alright! First, tell me your full name, please.|Okay! Please, tell me your name first.">
+
+      <input type="text"
+        data-conv-question="Howdy, {name}:0! It's a pleasure to meet you. (note that this question doesn't expect any answer)"
+        data-no-answer="true">
+      <input type="text" name="address" data-conv-question=" Please,enter your address.">
+      <input type="text" data-conv-question="This plugin supports multi-select too. Let's see an example."
+        data-no-answer="true">
+      <select name="multi[]" data-conv-question="What kind of service would you like today?" multiple>
+        <option value="Order">Order</option>
+        <input type="text" name="order" data-conv-question=" place your order and enter your address.">
+        <select name="multi[]" data-conv-question="How would you like to pay today?" multiple>
+          <option value="Card">Card</option>
+          <option value="Cash">Cash</option>
+        </select>
+        <input type="text" name="track" data-conv-question=" payment received">
+        <!-- <option value="Payment">Payment</option> -->
+        <!-- <input type="text" name="payment" data-conv-question=" choose option of payment">
+<select name="multi[]" data-conv-question="What kind of payment would you like today?" multiple></select> -->
+
+
+        <option value="Track">Track</option>
+        <input type="text" name="track" data-conv-question=" enter order id to track order status">
+        <input type="text" name="track" data-conv-question=" you order is ontransit">
+        <!-- <option value="Classic">Enquries</option> -->
+      </select>
+      <select name="Other" data-callback="storeState"
+        data-conv-question="So, need help with anything else today? (this question will fork the conversation based on your answer)">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+      <div data-conv-fork="Other">
+        <div data-conv-case="yes">
+          <input type="text" data-conv-question="Today is your lucky day! Yeppy." data-no-answer="true">
+        </div>
+        <div data-conv-case="no">
+          <select name="thought" data-conv-question="procced to service of your choice? have  fun!">
+            <option value="yes">Yes</option>
+            <option value="no">No..</option>
+          </select>
+        </div>
+      </div>
+      <input type="text" data-conv-question="convForm also supports regex patterns. Look:" data-no-answer="true">
+      <input data-conv-question="Type in your e-mail"
+        data-pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" id="email"
+        type="email" name="email" required placeholder="What's your e-mail?">
+      <input data-conv-question="Now tell me a secret (like a password)" type="password" data-minlength="6" id="senha"
+        name="password" required placeholder="password">
+      <select data-conv-question="Selects also support callback functions. For example, try one of these:">
+        <option value="google" data-callback="google">Google</option>
+        <option value="bing" data-callback="bing">Bing</option>
+      </select>
+      <script>
+        function google(stateWrapper, ready) {
+          window.open("https://google.com");
+          ready();
+        }
+        function bing(stateWrapper, ready) {
+          window.open("https://bing.com");
+          ready();
+        }
+      </script>
+      <select name="callbackTest"
+        data-conv-question="You can do some cool things on our site. Want to rollback to the 'services' question before?">
+        <option value="yes" data-callback="rollback">Yes</option>
+        <option value="no" data-callback="restore">No</option>
+      </select>
+      <select
+        data-conv-question="This is it! If you like me, consider donating! If you need support, contact me. When the form gets to the end, the plugin submits it normally, like you had filled it."
+        id="">
+        <option value="">Awesome!</option>
+      </select>
+    </form>
+    </div>
+  </div>
+
+
+  <!-- Chatbot end -->
     <div class="container-fluid" id="main">
       <nav class="navbar navbar-expand-lg  bg-transparent ">
         <a
