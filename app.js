@@ -1,10 +1,13 @@
 var express = require("express");
 var exphbs = require("express-handlebars");
 var session = require("express-session");
-// const bcrypt = require('bcrypt');
-// var ssn;
+var flash = require('express-flash');
+
+const uuid = require('uuid-random');
+const OrderId = require('./order');
 
 
+let orderId = OrderId(uuid());
 const sqlite3 = require('sqlite3');
 const { open } = require('sqlite');
 
@@ -21,6 +24,7 @@ app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true,
 app.use(urlencoded({ extended: false }))
 // parse application/
 app.use(json());
+app.use(flash());
 
 open({
   filename: './parceldelivery.db',
@@ -51,10 +55,12 @@ open({
     res.redirect('clientdashboard');
   });
 
-  app.get("/login/clientdashboard",async function (req, res) {
+  app.get("/login/clientdashboard", async function (req, res) {
     let drivers = await db.all("select * from drivers");
+    let orders = await db.all("select * from package_details");
     res.render('clientdashboard', {
-      data: drivers
+      data: orders,
+      drivers: drivers
     });
   });
 
@@ -69,8 +75,8 @@ open({
     res.redirect('ninjadashboard');
   });
 
-  app.get("/login/ninjadashboard",async function (req, res) {
-  let drivers = await db.all("select * from drivers");
+  app.get("/login/ninjadashboard", async function (req, res) {
+    let drivers = await db.all("select * from drivers");
     res.render('ninjadashboard', {
       data: drivers
     });
@@ -114,16 +120,16 @@ open({
     res.render('order');
   });
 
- app.post("/clientdashboard/form", async function (req, res) {
-    res.redirect('form');
-    
-  });
+  //  app.post("/clientdashboard/form", async function (req, res) {
+  //     res.redirect('form');
 
-  app.get("/clientdashboard/form", function (req, res) {
-    res.render('form');
-  });
+  //   });
 
-  app.get("/ninjadashboard/orders",async function (req, res) {
+  // app.get("/clientdashboard/form", function (req, res) {
+  //   res.render('form');
+  // });
+
+  app.get("/ninjadashboard/orders", async function (req, res) {
     let package_details = await db.all("select * from package_details");
     res.render('ninjaorder', {
       data: package_details
@@ -139,11 +145,15 @@ open({
     res.redirect('/login/ninjadashboard');
   });
 
-  app.post("/clientdashboard/parceldetails", async function (req, res) {
-    res.render('order');
+  app.get("/clientdashboard/parceldetails", async function (req, res) {
+    console.log(orderId.getOrderId())
+    res.render('order', {
+      orderId: orderId.getOrderId()
+    });
   });
 
-   app.get("/clientdashboard/", function (req, res) {
+  app.get("/clientdashboard/", function (req, res) {
+
     res.redirect('/login/clientdashboard');
   });
 
@@ -151,11 +161,45 @@ open({
     res.render('login-customer');
   });
 
-   app.get("/ninjadashboard/logout", function (req, res) {
+  app.get("/ninjadashboard/logout", function (req, res) {
     res.render('login-ninja');
   });
 
+  app.post("/book", async function (req, res) {
+    const {
+      username,
+      item_to_be_delivered,
+      mobile_number, city,
+      pincode,
+      pickupaddress,
+      deliveryaddress,
+      fare,
+      address_locality,
+      driver_id
+    } = req.body;
+    await db
+      .run("insert into package_details (sendername, item, fare, address_locality, city, pincode, order_id ,phonenumber, pick_up_address, drop_off_address, driver_id) values (?,?,?,?,?,?,?,?,?,?,?)"
+        , username, item_to_be_delivered, fare, address_locality, city, pincode, orderId.getOrderId(), mobile_number, pickupaddress, deliveryaddress, Number(driver_id));
+    res.redirect('/clientdashboard/parceldetails');
+    let checkIfDataWasAdded = await db.all("select * from package_details where sendername = ?", username);
+    console.log(checkIfDataWasAdded)
+  });
+
+  app.post("/track/package", async function (req, res) {
+    const { trackId } = req.body;
+    console.log(req.body)
+    let trackOrder = await db.all("select * from package_details where order_id = ?", trackId);
+    let orders = await db.all("select * from package_details");
+    console.log(orders);
+    req.flash("info", trackOrder[0].status);
+    res.redirect("/");
+  })
+
+
+
 });
+
+
 
 
 const PORT = process.env.PORT || 3013;
