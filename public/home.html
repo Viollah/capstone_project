@@ -14,19 +14,21 @@
   </head>
   <body>
      <!-- Chatbot -->
+     <link rel="stylesheet" href="public/chatBot.css">
   <link rel="stylesheet" href="dist/jquery.convform.css">
   <script type="text/javascript" src="public/jquery-1.12.3.min.js"></script>
   <script type="text/javascript" src="dist/jquery.convform.js"></script>
   <script type="text/javascript" src="public/custom.js"></script>
+  <script type="text/javascript" src="public/chatBot.js"></script>
 
 </head>
 
 <body>
 
   <!-- Chatbot -->
-  <div class="chat_icon">
-    <!-- <i class="fa fa-comments" aria-hidden="true"></i> -->
-    <img src="img/icon.jpg" alt="chat">
+   <div class="chat_icon">
+    <i class="fa fa-comments" aria-hidden="true"></i>
+    
 </div>
   <div class="chat_box">
     <div id="chat" class="conv-form-wrapper">
@@ -54,15 +56,15 @@
           <option value="Cash">Cash</option>
         </select>
         <input type="text" name="track" data-conv-question=" payment received">
-        <!-- <option value="Payment">Payment</option> -->
-        <!-- <input type="text" name="payment" data-conv-question=" choose option of payment">
-<select name="multi[]" data-conv-question="What kind of payment would you like today?" multiple></select> -->
+         <option value="Payment">Payment</option> 
+        <input type="text" name="payment" data-conv-question=" choose option of payment">
+<select name="multi[]" data-conv-question="What kind of payment would you like today?" multiple></select>
 
 
         <option value="Track">Track</option>
         <input type="text" name="track" data-conv-question=" enter order id to track order status">
         <input type="text" name="track" data-conv-question=" you order is ontransit">
-        <!-- <option value="Classic">Enquries</option> -->
+        <option value="Classic">Enquries</option> 
       </select>
       <select name="Other" data-callback="storeState"
         data-conv-question="So, need help with anything else today? (this question will fork the conversation based on your answer)">
@@ -111,8 +113,8 @@
         <option value="">Awesome!</option>
       </select>
     </form>
-    </div>
-  </div>
+    </div> 
+  </div> 
 
 
   <!-- Chatbot end -->

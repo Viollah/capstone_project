@@ -38,16 +38,17 @@
   <div class="container mb-5">
     <div class="row">
       <div class="col-sm-6">
-        
+
       </div>
       <div class="col-sm-6">
         <div class="container mt-5 pb-3 rounded w-75" style="background-color:#3c1a69;">
-          <h2 style="color: white;">Track Order {{info}}</h2>
-          <form action="/track/package" method="post" class="form-inline">
+          <h2 style="color: white;">Track Order</h2>
+          <form class="form-inline">
             <div class="form-group mx-sm-3 mb-2 ">
-              <input type="text" class="form-control" id="trackId" placeholder="Tracking number" name="trackId" />
+              <input type="text" class="form-control trackId" id="trackId" placeholder="Tracking number"
+                name="trackId" />
             </div>
-            <button type="submit" class="btn btn-primary mb-2" id="track">
+            <button type="button" class="btn btn-primary mb-2" id="track">
               Track
             </button>
 
@@ -193,51 +194,153 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-<footer style="background-color: #c3cfd1">
-  <div class="container pt-3">
-    <div class="row">
-      <div class="col">
-        <p style="color:#3c1a69;">
-          <span><img src="https://img.icons8.com/ios/40/000000/home.png" /></span>
-          &nbsp Address
-        </p>
-        <p class="pl-5" style="color:#3c1a69">
-          Unit 1A & 501A, Building B-1, Midrand, Girth-411014,
-          Gauteng, Johannesburg.
-        </p>
-      </div>
-      <div class="col">
-        <p style="color:#3c1a69;">
-          <span><img src="https://img.icons8.com/color/48/000000/send-mass-email.png" /></span>
-          &nbsp Email us
-        </p>
-        <p class="pl-5" style="color:#3c1a69">Drop Email at:<br />support@parceldelievry.com</p>
-      </div>
-      <div class="col">
-        <p style="color:#3c1a69;">
-          <span><img src="https://img.icons8.com/officel/40/000000/cell-phone.png" /></span>
-          &nbsp Call us
-        </p>
-        <p class="pl-5" style="color:#3c1a69">Welcome to call Us:<br />(+27)20-49116100</p>
-      </div>
-      <div class="col">
-        <p style="color:#3c1a69;">
-          <span><img src="https://img.icons8.com/color/48/000000/conference-call.png" /></span>
-          &nbsp Follow Us
-        </p>
-        <p class="pl-5" style="color:#3c1a69">
-          <img src="https://img.icons8.com/color/35/000000/instagram-new.png" /><img
-            src="https://img.icons8.com/color/35/000000/linkedin.png" /><img
-            src="https://img.icons8.com/color/35/000000/facebook-new.png" /><img
-            src="https://img.icons8.com/color/35/000000/linkedin.png" />
-        </p>
-      </div>
+
+<!-- Chatbot -->
+<link rel="stylesheet" href="dist/jquery.convform.css">
+<script type="text/javascript" src="jquery-1.12.3.min.js"></script>
+<script type="text/javascript" src="dist/jquery.convform.js"></script>
+<script type="text/javascript" src="custom.js"></script>
+
+<body>
+
+  <!-- Chatbot -->
+  <div class="chat_icon">
+    <i class="fa fa-comments" aria-hidden="true"></i>
+
+  </div>
+  <div class="chat_box">
+    <div id="chat" class="conv-form-wrapper">
+      <form action="" method="GET" class="hidden">
+        <select
+          data-conv-question="Hello! I'm a chatbot . Can I show you some features? (this question comes from a select)"
+          name="first-question">
+          <option value="yes">Yes</option>
+          <option value="sure">Sure!</option>
+        </select>
+        <input type="text" name="name"
+          data-conv-question="Alright! First, tell me your full name, please.|Okay! Please, tell me your name first.">
+
+        <input type="text"
+          data-conv-question="Howdy, {name}:0! It's a pleasure to meet you. (note that this question doesn't expect any answer)"
+          data-no-answer="true">
+        <input type="text" name="address" data-conv-question=" Please,enter your address.">
+        <input type="text" data-conv-question="This plugin supports multi-select too. Let's see an example."
+          data-no-answer="true">
+        <select name="multi[]" data-conv-question="What kind of service would you like today?" multiple>
+          <option value="Order">Order</option>
+          <input type="text" name="order" data-conv-question=" place your order and enter your address.">
+          <select name="multi[]" data-conv-question="How would you like to pay today?" multiple>
+            <option value="Card">Card</option>
+            <option value="Cash">Cash</option>
+          </select>
+          <input type="text" name="track" data-conv-question=" payment received">
+          <option value="Payment">Payment</option>
+          <input type="text" name="payment" data-conv-question=" choose option of payment">
+          <select name="multi[]" data-conv-question="What kind of payment would you like today?" multiple></select>
+
+
+          <option value="Track">Track</option>
+          <input type="text" name="track" data-conv-question=" enter order id to track order status">
+          <input type="text" name="track" data-conv-question=" you order is ontransit">
+          <option value="Classic">Enquries</option>
+        </select>
+        <select name="Other" data-callback="storeState"
+          data-conv-question="So, need help with anything else today? (this question will fork the conversation based on your answer)">
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <div data-conv-fork="Other">
+          <div data-conv-case="yes">
+            <input type="text" data-conv-question="Today is your lucky day! Yeppy." data-no-answer="true">
+          </div>
+          <div data-conv-case="no">
+            <select name="thought" data-conv-question="procced to service of your choice? have  fun!">
+              <option value="yes">Yes</option>
+              <option value="no">No..</option>
+            </select>
+          </div>
+        </div>
+        <input type="text" data-conv-question="convForm also supports regex patterns. Look:" data-no-answer="true">
+        <input data-conv-question="Type in your e-mail"
+          data-pattern="^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" id="email"
+          type="email" name="email" required placeholder="What's your e-mail?">
+        <input data-conv-question="Now tell me a secret (like a password)" type="password" data-minlength="6" id="senha"
+          name="password" required placeholder="password">
+        <select data-conv-question="Selects also support callback functions. For example, try one of these:">
+          <option value="google" data-callback="google">Google</option>
+          <option value="bing" data-callback="bing">Bing</option>
+        </select>
+        <script>
+          function google(stateWrapper, ready) {
+            window.open("https://google.com");
+            ready();
+          }
+          function bing(stateWrapper, ready) {
+            window.open("https://bing.com");
+            ready();
+          }
+        </script>
+        <select name="callbackTest"
+          data-conv-question="You can do some cool things on our site. Want to rollback to the 'services' question before?">
+          <option value="yes" data-callback="rollback">Yes</option>
+          <option value="no" data-callback="restore">No</option>
+        </select>
+        <select
+          data-conv-question="This is it! If you like me, consider donating! If you need support, contact me. When the form gets to the end, the plugin submits it normally, like you had filled it."
+          id="">
+          <option value="">Awesome!</option>
+        </select>
+      </form>
     </div>
   </div>
-  <div class="container">
-    <hr style="border: 1px solid white;" />
-    <h5 class="text-center pb-3" style="color:#3c1a69;">
-      © 2021 Parceldelivery All Rights Reserved
-    </h5>
-  </div>
-</footer>
+
+
+  <!-- Chatbot end -->
+  <footer style="background-color: #c3cfd1">
+    <div class="container pt-3">
+      <div class="row">
+        <div class="col">
+          <p style="color:#3c1a69;">
+            <span><img src="https://img.icons8.com/ios/40/000000/home.png" /></span>
+            &nbsp Address
+          </p>
+          <p class="pl-5" style="color:#3c1a69">
+            Unit 1A & 501A, Building B-1, Midrand, Girth-411014,
+            Gauteng, Johannesburg.
+          </p>
+        </div>
+        <div class="col">
+          <p style="color:#3c1a69;">
+            <span><img src="https://img.icons8.com/color/48/000000/send-mass-email.png" /></span>
+            &nbsp Email us
+          </p>
+          <p class="pl-5" style="color:#3c1a69">Drop Email at:<br />support@parceldelievry.com</p>
+        </div>
+        <div class="col">
+          <p style="color:#3c1a69;">
+            <span><img src="https://img.icons8.com/officel/40/000000/cell-phone.png" /></span>
+            &nbsp Call us
+          </p>
+          <p class="pl-5" style="color:#3c1a69">Welcome to call Us:<br />(+27)20-49116100</p>
+        </div>
+        <div class="col">
+          <p style="color:#3c1a69;">
+            <span><img src="https://img.icons8.com/color/48/000000/conference-call.png" /></span>
+            &nbsp Follow Us
+          </p>
+          <p class="pl-5" style="color:#3c1a69">
+            <img src="https://img.icons8.com/color/35/000000/instagram-new.png" /><img
+              src="https://img.icons8.com/color/35/000000/linkedin.png" /><img
+              src="https://img.icons8.com/color/35/000000/facebook-new.png" /><img
+              src="https://img.icons8.com/color/35/000000/linkedin.png" />
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <hr style="border: 1px solid white;" />
+      <h5 class="text-center pb-3" style="color:#3c1a69;">
+        © 2021 Parceldelivery All Rights Reserved
+      </h5>
+    </div>
+  </footer>

@@ -50,7 +50,7 @@ body {
   right : 30px;
   bottom:0;
   font-size: 80px;
-  color: #fff;
+  color: black;
   cursor : pointer;
   z-index:1000;
 }
@@ -82,3 +82,6 @@ body {
 #messages{
   padding:20px ;
 }
+
+
+

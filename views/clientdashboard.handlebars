@@ -94,7 +94,6 @@
                                                                     name="pincode" placeholder="Pincode">
                                                             </div>
                                                             <div class="form-group">
-
                                                                 <input type="text" class="form-control" id="pickUp"
                                                                     name="pickupaddress" placeholder="Pick-Up address">
                                                             </div>
@@ -102,12 +101,13 @@
                                                                 <input type="text" class="form-control" id="drop"
                                                                     name="deliveryaddress" placeholder="Drop address">
                                                             </div>
-                                                            <div class="form-group">
+                                                            {{!-- <div class="form-group">
                                                                 <input type="text" class="form-control" id="fare"
                                                                     name="fare">
-                                                            </div>
+                                                            </div> --}}
 
-                                                            <input hidden type="text" class="form-control" value="{{this.id}}" name="driver_id">
+                                                            <input hidden type="text" class="form-control"
+                                                                value="{{this.id}}" name="driver_id">
 
                                                             <button type="submit" class="btn bg-info" id="book"
                                                                 name="booking">Book</button>
@@ -116,9 +116,9 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
                                                             data-dismiss="modal">Close</button>
-                                                        <button type="button" class="btn btn-secondary"
+                                                        {{!-- <button type="button" class="btn btn-secondary"
                                                             id="cal">Estimated
-                                                            fare</button>
+                                                            fare</button> --}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -175,7 +175,7 @@
                                     <td>{{this.order_id}}</td>
                                     <td>{{this.drop_off_address}}</td>
                                     <td>{{this.pick_up_address}}</td>
-                                    <td>{{this.status   }}</td>
+                                    <td>{{this.status }}</td>
                                 </tr>
                                 {{/each}}
                             </tbody>

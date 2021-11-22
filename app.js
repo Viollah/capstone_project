@@ -35,9 +35,7 @@ open({
   // only setup the routes once the database connection has been established
 
   app.get("/", async function (req, res) {
-    console.log("home runnig...");
     let allUsers = await db.all('select * from user');
-    console.log(allUsers);
     res.render('home');
   });
 
@@ -51,7 +49,6 @@ open({
     let email = req.body.email;
     let password = req.body.password;
     let user = await db.all("select * from user where email = ? and password = ?", email, password);
-    console.log(user);
     res.redirect('clientdashboard');
   });
 
@@ -185,20 +182,28 @@ open({
     console.log(checkIfDataWasAdded)
   });
 
-  app.post("/track/package", async function (req, res) {
-    const { trackId } = req.body;
-    console.log(req.body)
-    let trackOrder = await db.all("select * from package_details where order_id = ?", trackId);
+  app.get("/track/package/:orderId?", async function (req, res) {
+
+    console.log(req.params.orderId)
+    let trackOrder = await db.all("select * from package_details where order_id = ?", req.params.orderId);
     let orders = await db.all("select * from package_details");
-    console.log(orders);
+    console.log(trackOrder);
     req.flash("info", trackOrder[0].status);
-    res.redirect("/");
+    res.json({
+      order: trackOrder
+    })
+    // res.redirect("/");
   })
 
+  app.post('/ninjadashboard/statusupdate', async function (req, res) {
+    const { status, orderId } = req.body;
+    console.log(req.body);
+    await db.run('update package_details set status = ? where order_id = ?', status, orderId);
+  });
 
 
 });
-app.get("/chatbot", function(req, res) {
+app.get("/chatbot", function (req, res) {
   res.sendFile(__dirname + "/public/chatbot.html");
 });
 

@@ -11,10 +11,11 @@
         <p>Phone no:{{this.mobilenumber}}</p>
         <p>Pickup Address:{{this.pick_up_address}}</p>
         <p>Delivery Address:{{this.drop_off_address}}</p>
-        <form action="/ninjadashboard/statusupdate/{{this.order_id}}" method="Post">
+        <form action="/ninjadashboard/statusupdate" method="post">
+        <input hidden type="text" name="orderId" value={{this.order_id}}>
         <p><select name="status"  class="form-control">
         <option value="" disabled="" selected="">status</option>
-         <option value="ontransit">waiting</option>
+         <option value="waiting">waiting</option>
          <option value="ontransit">On transit</option>
         <option value="delivered">Delivered</option>
       
