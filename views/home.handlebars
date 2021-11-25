@@ -212,7 +212,7 @@
     <div id="chat" class="conv-form-wrapper">
       <form action="" method="GET" class="hidden">
         <select
-          data-conv-question="Hello! I'm a chatbot . Can I show you some features? (this question comes from a select)"
+          data-conv-question="Hello! Can I show you some features?"
           name="first-question">
           <option value="yes">Yes</option>
           <option value="sure">Sure!</option>
@@ -221,28 +221,32 @@
           data-conv-question="Alright! First, tell me your full name, please.|Okay! Please, tell me your name first.">
 
         <input type="text"
-          data-conv-question="Howdy, {name}:0! It's a pleasure to meet you. (note that this question doesn't expect any answer)"
+          data-conv-question="Howdy, {name}:0! It's a pleasure to meet you. "
           data-no-answer="true">
         <input type="text" name="address" data-conv-question=" Please,enter your address.">
-        <input type="text" data-conv-question="This plugin supports multi-select too. Let's see an example."
-          data-no-answer="true">
+        {{!-- <input type="text" data-conv-question="This plugin supports multi-select too. Let's see an example."
+          data-no-answer="true"> --}}
         <select name="multi[]" data-conv-question="What kind of service would you like today?" multiple>
-          <option value="Order">Order</option>
-          <input type="text" name="order" data-conv-question=" place your order and enter your address.">
+          <option value="Book">Book Driver</option>
+          <input type="text" name="book" data-conv-question=" please enter item to be delivered and your address.">
+        </select>
           <select name="multi[]" data-conv-question="How would you like to pay today?" multiple>
             <option value="Card">Card</option>
             <option value="Cash">Cash</option>
-          </select>
-          <input type="text" name="track" data-conv-question=" payment received">
-          <option value="Payment">Payment</option>
-          <input type="text" name="payment" data-conv-question=" choose option of payment">
-          <select name="multi[]" data-conv-question="What kind of payment would you like today?" multiple></select>
-
-
+            <input type="text" name="payment" data-conv-question=" payment received">
+     
+            {{!-- <select name="multi[]" data-conv-question="What other service would you like today?" multiple> --}}
           <option value="Track">Track</option>
           <input type="text" name="track" data-conv-question=" enter order id to track order status">
           <input type="text" name="track" data-conv-question=" you order is ontransit">
           <option value="Classic">Enquries</option>
+             {{!-- <input type="text" name="payment" data-conv-question="What other service would you like today?"> --}}
+          </select>
+          
+          {{!-- <option value="Payment">Payment</option> --}}
+          {{!-- <input type="text" name="payment" data-conv-question=" choose option of payment"> --}}
+          
+          
         </select>
         <select name="Other" data-callback="storeState"
           data-conv-question="So, need help with anything else today? (this question will fork the conversation based on your answer)">

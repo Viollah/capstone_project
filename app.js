@@ -137,7 +137,6 @@ open({
   //   res.render('/login/ninjadashboard');
   // });
 
-
   app.post("/ninjadashboard/update/", async function (req, res) {
     res.redirect('/login/ninjadashboard');
   });

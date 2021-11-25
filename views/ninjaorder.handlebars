@@ -13,7 +13,7 @@
         <p>Delivery Address:{{this.drop_off_address}}</p>
         <form action="/ninjadashboard/statusupdate" method="post">
         <input hidden type="text" name="orderId" value={{this.order_id}}>
-        <p><select name="status"  class="form-control">
+        {{!-- <p><select name="status"  class="form-control">
         <option value="" disabled="" selected="">status</option>
          <option value="waiting">waiting</option>
          <option value="ontransit">On transit</option>
@@ -21,7 +21,26 @@
       
         </select></p>
         <button class="btn btn-info" type="submit">Update</button>
-         <a class="btn btn-info" href="/ninjadashboard">Back</a>
+         <a class="btn btn-info" href="/ninjadashboard">Back</a> --}}
+
+         {{!--  --}}
+         
+           <div class="radio-container">
+             <p>Status:
+               <input type="radio" id="waiting" name="status" value="waiting">
+               <label for="waiting">Waiting</label>
+          
+             <input type="radio" id="ontrasit" name="status" value="ontrasit">
+            <label for="ontrasit">Ontrasit</label>
+            
+           <input type="radio"  id="delivered" name="status" value="delivered">
+            <label for="delivered">Delivered</label>
+             
+           </p>
+           </div>
+           
+         
+         {{!--  --}}
         </form>
     </div>
     </div>
