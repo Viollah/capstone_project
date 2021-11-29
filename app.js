@@ -140,6 +140,8 @@ open({
   app.post("/ninjadashboard/update/", async function (req, res) {
     res.redirect('/login/ninjadashboard');
   });
+  
+  
 
   app.get("/clientdashboard/parceldetails", async function (req, res) {
     console.log(orderId.getOrderId())
